@@ -19,7 +19,7 @@
 
 ### Category Name 2
 
-- [Washington fish harvest record](https://github.com/Zensius/WashingtonFishHarvest)
+- [Washington fish harvest record](https://zensius.github.io/WashingtonFishHarvest/)
 - [Project 2 Title](http://example.com/)
 - [Project 3 Title](http://example.com/)
 - [Project 4 Title](http://example.com/)
