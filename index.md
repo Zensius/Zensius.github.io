@@ -13,7 +13,7 @@
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Project 1 Title](/Fish_Harvest)
+[Fish Harvest record from 1974-2012](/Fish_Harvest)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 
