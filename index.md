@@ -4,9 +4,6 @@
 
 ### Category Name 1 
 
-[Project 1 Title](/Fish_Harvest)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
-
 ---
 [Project 2 Title](/pdf/2022Symposium_Kelvin.pdf)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
@@ -16,6 +13,9 @@
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
+[Project 1 Title](/Fish_Harvest)
+<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
 
 ### Category Name 2
 
