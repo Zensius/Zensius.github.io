@@ -15,7 +15,7 @@
 ### Category Name 2
 
 - [Washington fish harvest record](https://zensius.github.io/WashingtonFishHarvest/)
-- [Project 2 Title](http://example.com/)
-- [Project 3 Title](http://example.com/)
+- [Electric Vehicle Analysis In Washington](https://zensius.github.io/WA_electricVehicle/)
+- [Video Game Sales](https://zensius.github.io/VideoGameSales/)
 - [Project 4 Title](http://example.com/)
 - [Project 5 Title](http://example.com/)
