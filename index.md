@@ -1,19 +1,14 @@
 ## Portfolio
-
 ---
 
-### Category Name 1 
-
----
-[Project 2 Title](/pdf/2022Symposium_Kelvin.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
-
----
-[Project 3 Title](http://example.com/)
+### Highlighted Projects
+[Cosmology Research Project](/pdf/2022Symposium_Kelvin.pdf)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 ---
-### Category Name 2
-
+[Census Demographic Change](http://example.com/)
+<img src="images/dummy_thumbnail.jpg?raw=true"/>
+---
+### Personal Projects
 - [Washington fish harvest record](https://zensius.github.io/WashingtonFishHarvest/)
 - [Electric Vehicle Analysis In Washington](https://zensius.github.io/WA_electricVehicle/)
 - [Video Game Sales](https://zensius.github.io/VideoGameSales/)
