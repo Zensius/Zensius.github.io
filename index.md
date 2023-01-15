@@ -6,7 +6,7 @@
 #### Python | R | Excel
 [<img src="images/dummy_thumbnail.jpg"/>](/pdf/2022Symposium_Kelvin.pdf)
 ---
-### [Census Demographic Change](http://example.com/)
+### [Census Demographic Change](/Tableau_project)
 #### Tableau | Excel 
 <img src="images/age and sex.png" alt="missing">
 
@@ -28,5 +28,5 @@ Python | Excel <Br>
  
 ### [Spotify Popularity Analysis](https://www.kaggle.com/code/kelvinzeng/spotify-tracks-analysis#Analysis) <Br>
 Python | Excel <Br> 
- [<img src="images/spotify.png" width="300"/>](https://www.kaggle.com/code/kelvinzeng/spotify-tracks-analysis#Analysis)
+ [<img src="images/spotify.png" width="300"/>](https://www.kaggle.com/code/kelvinzeng/spotify-tracks-analysis)
  
