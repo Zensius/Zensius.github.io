@@ -1,6 +1,6 @@
 # Cosmology research project
 
-#### project Description:
+### project description:
 Active galactic nuclei (AGNs) are regions at the center of active galaxies.
 AGNs have been extensively studied for a long time, they could be a major
 contributor of activities such as star formation or even galactic evolution from
@@ -23,10 +23,21 @@ of the blackhole could also be a hindrance when looking at spectra of the AGN.
 
 <img src="images/research.png"/>
 
-#### Introduction
+---
+
+### What we did
+We worked with a large set of spectral data requested from Sloan Digital Sky Survey (SDSS) database that records energy intensity at different wavelength of astronomical objects. The data we got was very noisy due to the disturbance and interferance of gas and dust in between Earth and the object. Therefore, we used Python to apply a logarithimic expression to the graph so that it will be normalized to equal level as seen in the picture above. 
 <img src="images/bal.png"/>
-#### Analysis
-<img src="images/example.png"/>
-#### Contribution 
+After the normalization, we highlighted the area of interest for the specific object to check if there are outflows we're looking for. As you can see in the second picture, different object have varying width of area of interst, specifically the band in red. So another algorithm was used to filter out the objects not within the critia of interest.
+
+---
+
+### What we found
+<img src="images/example.png"/> 
+To identify further if there are outflow from the object, we need to zoom even further into the spectral graph and calculate the separation distance of the two trough shown above. The specific element in this case will be CIV, which will have a specific separation distance of ~500 nm, so by calculating the separation distance, we can identify wether the given red band is, in fact, Carbon IV. 
+
+---
+
+The whole project was done in Python using packages like Matplotlib and Pandas for visualization and Excel for data organizing and cleaning. 
 
 For more info, please visit: [Github Link](https://github.com/Zensius/DR16Q), [Paper](https://www.overleaf.com/read/fhpvgpxncrxh), [Presentation](pdf/2022Symposium_Kelvin.pdf)
