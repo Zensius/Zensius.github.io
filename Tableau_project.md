@@ -5,9 +5,9 @@
 ### 1. Obtaining Data
 
 The data was downloaded from [Census](https://data.census.gov/) in .csv format. However, the data downloaded was not in the format that is suitable for Tableau, therefore, I have to transform the data into long format and remove annotation and margin of error because of its insignificance in this scenario. Below are the picture of the data transformation performed. 
-| Before cleaning       | After Cleaning |
+| Before cleaning | After Cleaning |
 | ----------- | ----------- |
-|<img src="images/raw_data.png"/>| <img src="images/clean_data.png"/>|
+| <img src="images/raw_data.png" width="300"/> | <img src="images/clean_data.png" width="300"/> |
 
 ### 2. Analysis
 
