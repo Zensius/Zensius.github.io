@@ -26,4 +26,4 @@ of the blackhole could also be a hindrance when looking at spectra of the AGN.
 #### Analysis
 #### Contribution 
 
-For more info, please visit: [Github Link](https://github.com/Zensius/DR16Q), [Paper](https://www.overleaf.com/read/fhpvgpxncrxh)
+For more info, please visit: [Github Link](https://github.com/Zensius/DR16Q), [Paper](https://www.overleaf.com/read/fhpvgpxncrxh), [Presentation](pdf/2022Symposium_Kelvin.pdf)
