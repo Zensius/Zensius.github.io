@@ -93,6 +93,7 @@ FROM dannys_diner.sales AS s
 INNER JOIN dannys_diner.menu AS m ON s.product_id = m.product_id
 GROUP BY s.customer_id
 ```
+
 ```
 Output: 
 | customer_id | Total ($) |
@@ -101,9 +102,8 @@ Output:
 |      C      |    36     |
 |      A      |    76     |
 ```
----
 
-1. How many days has each customer visited the restaurant?
+2. How many days has each customer visited the restaurant?
 
 ```sql
 SELECT 
@@ -120,7 +120,6 @@ Output:
 |      B      |       6       |
 |      C      |       2       |
 ```
----
 
 3. What was the first item from the menu purchased by each customer?
 
@@ -141,7 +140,6 @@ Output:
 |      B      |    curry     |
 |      A      |    sushi     |
 ```
----
 
 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 ```sql
@@ -160,7 +158,6 @@ Output:
 | :----------: | :---: |
 |    ramen     |   8   |
 ```
----
 
 5. Which item was the most popular for each customer?
 ```sql
@@ -184,7 +181,6 @@ Output:
 |      A      |    curry     |   2   |
 |      A      |    sushi     |   1   |
 ```
----
 
 6. Which item was purchased first by the customer after they became a member?
 ```sql
@@ -204,7 +200,6 @@ Output:
 |      A      | 2021-01-10T00:00:00.000Z |    ramen     | 2021-01-07T00:00:00.000Z |
 ```
 
----
 
 7. Which item was purchased just before the customer became a member?
 ```sql
@@ -221,7 +216,6 @@ Output:
 |           A            | 2021-01-01T00:00:00.000Z |   sushi   | 2021-01-07T00:00:00.000Z |
 |           B            | 2021-01-04T00:00:00.000Z |   sushi   | 2021-01-09T00:00:00.000Z |
 ```
----
 
 8. What is the total items and amount spent for each member before they became a member?
 ```sql
@@ -235,14 +229,14 @@ SELECT customer_id as Members, count(product_id) as "Products bought", sum(price
 FROM temp
 GROUP BY customer_id
 ```
+```
 Output: 
 
 | members | Products bought |  sum  |
 | :-----: | :-------------: | :---: |
 |    B    |        3        |  40   |
 |    A    |        2        |  25   |
-
----
+```
 
 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 ```sql
@@ -264,7 +258,6 @@ Output:
 |      B      |  940  |
 |      C      |  360  |
 ```
----
 
 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 ```sql
