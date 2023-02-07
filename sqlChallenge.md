@@ -93,13 +93,14 @@ FROM dannys_diner.sales AS s
 INNER JOIN dannys_diner.menu AS m ON s.product_id = m.product_id
 GROUP BY s.customer_id
 ```
+```
 Output: 
 | customer_id | Total ($) |
 | :---------: | :-------: |
 |      B      |    74     |
 |      C      |    36     |
 |      A      |    76     |
-
+```
 ---
 
 1. How many days has each customer visited the restaurant?
@@ -111,13 +112,14 @@ SELECT
 FROM dannys_diner.sales
 GROUP BY customer_id
 ```
+```
 Output: 
 | customer_id | Visited times |
 | :---------: | :-----------: |
 |      A      |       4       |
 |      B      |       6       |
 |      C      |       2       |
-
+```
 ---
 
 3. What was the first item from the menu purchased by each customer?
@@ -131,13 +133,14 @@ INNER JOIN dannys_diner.menu ON sales.product_id = menu.product_id
 WHERE sales.order_date = '2021-01-01'
 limit 3
 ```
+```
 Output:
 | customer_id | product_name |
 | :---------: | :----------: |
 |      C      |    ramen     |
 |      B      |    curry     |
 |      A      |    sushi     |
-
+```
 ---
 
 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
@@ -151,11 +154,12 @@ GROUP BY m.product_name, s.product_id
 ORDER by times DESC
 LIMIT 1
 ```
+```
 Output:
 | product_name | times |
 | :----------: | :---: |
 |    ramen     |   8   |
-
+```
 ---
 
 5. Which item was the most popular for each customer?
@@ -168,6 +172,7 @@ FROM temp
 GROUP BY customer_id, product_name
 ORDER BY count(product_name) DESC
 ```
+```
 Output:
 | customer_id | product_name | count |
 | :---------: | :----------: | :---: |
@@ -178,7 +183,7 @@ Output:
 |      B      |    ramen     |   2   |
 |      A      |    curry     |   2   |
 |      A      |    sushi     |   1   |
-
+```
 ---
 
 6. Which item was purchased first by the customer after they became a member?
@@ -191,11 +196,14 @@ WHERE join_date <= order_date
 ORDER BY order_date
 LIMIT 2
 ```
+```
 Output: 
 | customer_id |        order_date        | product_name |        join_date         |
 | :---------: | :----------------------: | :----------: | :----------------------: |
 |      A      | 2021-01-07T00:00:00.000Z |    curry     | 2021-01-07T00:00:00.000Z |
 |      A      | 2021-01-10T00:00:00.000Z |    ramen     | 2021-01-07T00:00:00.000Z |
+```
+
 ---
 
 7. Which item was purchased just before the customer became a member?
@@ -206,12 +214,13 @@ Join dannys_diner.members as mem ON s.customer_id = mem.customer_id
 JOIN dannys_diner.menu as m ON s.product_id = m.product_id
 WHERE join_date > order_date
 ```
+```
 Output: 
 | customer_id	order_date |       product_name       | join_date |
 | :--------------------: | :----------------------: | :-------: |
 |           A            | 2021-01-01T00:00:00.000Z |   sushi   | 2021-01-07T00:00:00.000Z |
 |           B            | 2021-01-04T00:00:00.000Z |   sushi   | 2021-01-09T00:00:00.000Z |
-
+```
 ---
 
 8. What is the total items and amount spent for each member before they became a member?
@@ -247,14 +256,14 @@ SUM(CASE WHEN product_id = 1 THEN 20*price ELSE 10*price END) AS point
 FROM temp
 GROUP BY temp.customer_id
 ```
+```
 Output: 
-
 | customer_id | point |
 | :---------: | :---: |
 |      A      |  860  |
 |      B      |  940  |
 |      C      |  360  |
-
+```
 ---
 
 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
@@ -266,11 +275,13 @@ JOIN dannys_diner.members as mem ON s.customer_id = mem.customer_id
 WHERE EXTRACT(MONTH FROM order_date) < 2
 GROUP BY s.customer_id
 ```
+```
 Output: 
 | customer_id | points earned |
 | :---------: | :-----------: |
 |      A      |     1520      |
 |      B      |     1090      |
+```
 ---
 
 ## Bonus Question
@@ -288,6 +299,7 @@ FROM dannys_diner.sales AS s
 LEFT JOIN dannys_diner.menu AS m ON s.product_id = m.product_id
 LEFT JOIN dannys_diner.members AS mem ON mem.customer_id = s.customer_id
 ORDER BY s.customer_id, order_date
+```
 ```
 Output:
 | customer_id |        order_date        | product_name | price | members |
@@ -307,7 +319,7 @@ Output:
 |      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |
 |      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |
 |      C      | 2021-01-07T00:00:00.000Z |    ramen     |  12   |    N    |
-
+```
 
 ```sql
 WITH temp AS (SELECT s.customer_id, order_date, product_name, price, 
@@ -329,6 +341,7 @@ SELECT *,
       	ORDER BY order_date) END AS ranking
 FROM temp;
 ```
+```
 Output:
 | customer_id |        order_date        | product_name | price | members | ranking |
 | :---------: | :----------------------: | :----------: | :---: | :-----: | :-----: |
@@ -347,7 +360,7 @@ Output:
 |      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
 |      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
 |      C      | 2021-01-07T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
-
+```
 [Back to Top](#8-week-sql-challenge)
 
 
