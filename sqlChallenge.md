@@ -77,13 +77,11 @@ Danny’s Diner is in need of your assistance to help the restaurant stay afloat
       ('B', '2021-01-09');
 ```
 
-<img src="images/w1ERD.png" alt="missing">
-
 ---
 
-## Solutions
+## Questions
 
-1. What is the total amount each customer spent at the restaurant?
+### What is the total amount each customer spent at the restaurant?
 
 ```sql
 SELECT
@@ -103,7 +101,7 @@ Output:
 |      A      |    76     |
 ```
 
-2. How many days has each customer visited the restaurant?
+### How many days has each customer visited the restaurant?
 
 ```sql
 SELECT 
@@ -121,7 +119,7 @@ Output:
 |      C      |       2       |
 ```
 
-3. What was the first item from the menu purchased by each customer?
+### What was the first item from the menu purchased by each customer?
 
 ```sql
 SELECT 
@@ -141,7 +139,7 @@ Output:
 |      A      |    sushi     |
 ```
 
-4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+### What is the most purchased item on the menu and how many times was it purchased by all customers?
 ```sql
 SELECT 
 	m.product_name,
@@ -159,7 +157,7 @@ Output:
 |    ramen     |   8   |
 ```
 
-5. Which item was the most popular for each customer?
+### Which item was the most popular for each customer?
 ```sql
 WITH temp as (SELECT customer_id, product_name
 FROM dannys_diner.sales as s
@@ -182,7 +180,7 @@ Output:
 |      A      |    sushi     |   1   |
 ```
 
-6. Which item was purchased first by the customer after they became a member?
+### Which item was purchased first by the customer after they became a member?
 ```sql
 SELECT DISTINCT ON (order_date) s.customer_id, order_date, product_name, join_date
 FROM dannys_diner.sales as s
@@ -201,7 +199,7 @@ Output:
 ```
 
 
-7. Which item was purchased just before the customer became a member?
+### Which item was purchased just before the customer became a member?
 ```sql
 SELECT DISTINCT ON (s.customer_id) s.customer_id, order_date, product_name, join_date 
 FROM dannys_diner.sales as s
@@ -217,7 +215,7 @@ Output:
 |           B            | 2021-01-04T00:00:00.000Z |   sushi   | 2021-01-09T00:00:00.000Z |
 ```
 
-8. What is the total items and amount spent for each member before they became a member?
+### What is the total items and amount spent for each member before they became a member?
 ```sql
 WITH temp as (SELECT s.customer_id, s.product_id, price
 FROM dannys_diner.sales AS s
@@ -238,7 +236,7 @@ Output:
 |    A    |        2        |  25   |
 ```
 
-9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+### If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 ```sql
 WITH temp AS (
 SELECT customer_id, s.product_id, product_name, price
@@ -259,7 +257,7 @@ Output:
 |      C      |  360  |
 ```
 
-10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+### In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 ```sql
 SELECT s.customer_id, SUM(CASE WHEN ABS(order_date-join_date) <= 7 THEN price*20 ELSE price*10 END) AS "points earned"
 FROM dannys_diner.sales AS s
@@ -279,7 +277,7 @@ Output:
 
 ## Bonus Question
 
-Join All The Things
+### Join All The Things
 The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL.
 ```sql
 SELECT s.customer_id, order_date, product_name, price, 
@@ -313,6 +311,9 @@ Output:
 |      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |
 |      C      | 2021-01-07T00:00:00.000Z |    ramen     |  12   |    N    |
 ```
+
+### Rank All The Things
+Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
 ```sql
 WITH temp AS (SELECT s.customer_id, order_date, product_name, price, 
