@@ -26,6 +26,6 @@ Next, if we take a look at the dashboard of poverty status grouped by family siz
 Census data provided a lot of insights on the local demographics, and much more analysis can be done on various factors. There are, in fact, some limitations to it. Though the Census survey is obligated to be filled out by law, this does not prevent anyone from avoiding or ignoring the requirement.  Additionally, there are cases where the questionnaires are filled out erroneously, thus could hinder the legitimacy of responses however small it may be. Lastly, the Census survey is sent out to citizens chosen randomly to answer, therefore, those who chose not to fill out could skew the demographic data significantly. 
 
 
-For more details see [my Tableau public ](https://guides.github.com/features/mastering-markdown/).
+For more details see [my Tableau public ](https://public.tableau.com/app/profile/kelvin.zeng).
 
 
