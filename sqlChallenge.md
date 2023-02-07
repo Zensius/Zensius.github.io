@@ -2,12 +2,12 @@
 ## Table of Content:
 1. [Case Study #1 - Danny's Diner](#week-1) 
 2. [Case Study #2 - Pizza Runner](#week-2) 
-3. [Week 3:](#week-3) 
-4. [Week 4:](#week-4) 
-5. [Week 5:](#week-5) 
-6. [Week 6:](#week-6) 
-7. [Week 7:](#week-7) 
-8. [Week 8:](#week-8) 
+3. [Case Study #3 - Foodie-Fi](#week-3) 
+4. [Case Study #4 - Data Bank](#week-4) 
+5. [Case Study #5 - Data Mart](#week-5) 
+6. [Case Study #6 - Clique Bait](#week-6) 
+7. [Case Study #7 - Balanced Tree Clothing Co.](#week-7) 
+8. [Case Study #8 - Fresh Segments](#week-8) 
 
 # Week 1
 ## Dannys Diner
@@ -88,14 +88,21 @@ Danny’s Diner is in need of your assistance to help the restaurant stay afloat
 ```sql
 SELECT
   	s.customer_id,
-    SUM(m.price) as Total
+    SUM(m.price) as "Total ($)"
 FROM dannys_diner.sales AS s
 INNER JOIN dannys_diner.menu AS m ON s.product_id = m.product_id
 GROUP BY s.customer_id
 ```
+Output: 
+| customer_id | Total ($) |
+| :---------: | :-------: |
+|      B      |    74     |
+|      C      |    36     |
+|      A      |    76     |
+
 ---
 
-2. How many days has each customer visited the restaurant?
+1. How many days has each customer visited the restaurant?
 
 ```sql
 SELECT 
@@ -104,6 +111,12 @@ SELECT
 FROM dannys_diner.sales
 GROUP BY customer_id
 ```
+Output: 
+| customer_id | Visited times |
+| :---------: | :-----------: |
+|      A      |       4       |
+|      B      |       6       |
+|      C      |       2       |
 
 ---
 
@@ -118,6 +131,12 @@ INNER JOIN dannys_diner.menu ON sales.product_id = menu.product_id
 WHERE sales.order_date = '2021-01-01'
 limit 3
 ```
+Output:
+| customer_id | product_name |
+| :---------: | :----------: |
+|      C      |    ramen     |
+|      B      |    curry     |
+|      A      |    sushi     |
 
 ---
 
@@ -132,6 +151,10 @@ GROUP BY m.product_name, s.product_id
 ORDER by times DESC
 LIMIT 1
 ```
+Output:
+| product_name | times |
+| :----------: | :---: |
+|    ramen     |   8   |
 
 ---
 
@@ -145,6 +168,16 @@ FROM temp
 GROUP BY customer_id, product_name
 ORDER BY count(product_name) DESC
 ```
+Output:
+| customer_id | product_name | count |
+| :---------: | :----------: | :---: |
+|      C      |    ramen     |   3   |
+|      A      |    ramen     |   3   |
+|      B      |    curry     |   2   |
+|      B      |    sushi     |   2   |
+|      B      |    ramen     |   2   |
+|      A      |    curry     |   2   |
+|      A      |    sushi     |   1   |
 
 ---
 
@@ -158,7 +191,11 @@ WHERE join_date <= order_date
 ORDER BY order_date
 LIMIT 2
 ```
-
+Output: 
+| customer_id |        order_date        | product_name |        join_date         |
+| :---------: | :----------------------: | :----------: | :----------------------: |
+|      A      | 2021-01-07T00:00:00.000Z |    curry     | 2021-01-07T00:00:00.000Z |
+|      A      | 2021-01-10T00:00:00.000Z |    ramen     | 2021-01-07T00:00:00.000Z |
 ---
 
 7. Which item was purchased just before the customer became a member?
@@ -169,6 +206,11 @@ Join dannys_diner.members as mem ON s.customer_id = mem.customer_id
 JOIN dannys_diner.menu as m ON s.product_id = m.product_id
 WHERE join_date > order_date
 ```
+Output: 
+| customer_id	order_date |       product_name       | join_date |
+| :--------------------: | :----------------------: | :-------: |
+|           A            | 2021-01-01T00:00:00.000Z |   sushi   | 2021-01-07T00:00:00.000Z |
+|           B            | 2021-01-04T00:00:00.000Z |   sushi   | 2021-01-09T00:00:00.000Z |
 
 ---
 
@@ -184,6 +226,12 @@ SELECT customer_id as Members, count(product_id) as "Products bought", sum(price
 FROM temp
 GROUP BY customer_id
 ```
+Output: 
+
+| members | Products bought |  sum  |
+| :-----: | :-------------: | :---: |
+|    B    |        3        |  40   |
+|    A    |        2        |  25   |
 
 ---
 
@@ -199,6 +247,13 @@ SUM(CASE WHEN product_id = 1 THEN 20*price ELSE 10*price END) AS point
 FROM temp
 GROUP BY temp.customer_id
 ```
+Output: 
+
+| customer_id | point |
+| :---------: | :---: |
+|      A      |  860  |
+|      B      |  940  |
+|      C      |  360  |
 
 ---
 
@@ -211,7 +266,11 @@ JOIN dannys_diner.members as mem ON s.customer_id = mem.customer_id
 WHERE EXTRACT(MONTH FROM order_date) < 2
 GROUP BY s.customer_id
 ```
-
+Output: 
+| customer_id | points earned |
+| :---------: | :-----------: |
+|      A      |     1520      |
+|      B      |     1090      |
 ---
 
 ## Bonus Question
@@ -230,6 +289,25 @@ LEFT JOIN dannys_diner.menu AS m ON s.product_id = m.product_id
 LEFT JOIN dannys_diner.members AS mem ON mem.customer_id = s.customer_id
 ORDER BY s.customer_id, order_date
 ```
+Output:
+| customer_id |        order_date        | product_name | price | members |
+| :---------: | :----------------------: | :----------: | :---: | :-----: |
+|      A      | 2021-01-01T00:00:00.000Z |    curry     |  15   |    N    |
+|      A      | 2021-01-01T00:00:00.000Z |    sushi     |  10   |    N    |
+|      A      | 2021-01-07T00:00:00.000Z |    curry     |  15   |    Y    |
+|      A      | 2021-01-10T00:00:00.000Z |    ramen     |  12   |    Y    |
+|      A      | 2021-01-11T00:00:00.000Z |    ramen     |  12   |    Y    |
+|      A      | 2021-01-11T00:00:00.000Z |    ramen     |  12   |    Y    |
+|      B      | 2021-01-01T00:00:00.000Z |    curry     |  15   |    N    |
+|      B      | 2021-01-02T00:00:00.000Z |    curry     |  15   |    N    |
+|      B      | 2021-01-04T00:00:00.000Z |    sushi     |  10   |    N    |
+|      B      | 2021-01-11T00:00:00.000Z |    sushi     |  10   |    Y    |
+|      B      | 2021-01-16T00:00:00.000Z |    ramen     |  12   |    Y    |
+|      B      | 2021-02-01T00:00:00.000Z |    ramen     |  12   |    Y    |
+|      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |
+|      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |
+|      C      | 2021-01-07T00:00:00.000Z |    ramen     |  12   |    N    |
+
 
 ```sql
 WITH temp AS (SELECT s.customer_id, order_date, product_name, price, 
@@ -251,6 +329,25 @@ SELECT *,
       	ORDER BY order_date) END AS ranking
 FROM temp;
 ```
+Output:
+| customer_id |        order_date        | product_name | price | members | ranking |
+| :---------: | :----------------------: | :----------: | :---: | :-----: | :-----: |
+|      A      | 2021-01-01T00:00:00.000Z |    curry     |  15   |    N    |  null   |
+|      A      | 2021-01-01T00:00:00.000Z |    sushi     |  10   |    N    |  null   |
+|      A      | 2021-01-07T00:00:00.000Z |    curry     |  15   |    Y    |    1    |
+|      A      | 2021-01-10T00:00:00.000Z |    ramen     |  12   |    Y    |    2    |
+|      A      | 2021-01-11T00:00:00.000Z |    ramen     |  12   |    Y    |    3    |
+|      A      | 2021-01-11T00:00:00.000Z |    ramen     |  12   |    Y    |    3    |
+|      B      | 2021-01-01T00:00:00.000Z |    curry     |  15   |    N    |  null   |
+|      B      | 2021-01-02T00:00:00.000Z |    curry     |  15   |    N    |  null   |
+|      B      | 2021-01-04T00:00:00.000Z |    sushi     |  10   |    N    |  null   |
+|      B      | 2021-01-11T00:00:00.000Z |    sushi     |  10   |    Y    |    1    |
+|      B      | 2021-01-16T00:00:00.000Z |    ramen     |  12   |    Y    |    2    |
+|      B      | 2021-02-01T00:00:00.000Z |    ramen     |  12   |    Y    |    3    |
+|      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
+|      C      | 2021-01-01T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
+|      C      | 2021-01-07T00:00:00.000Z |    ramen     |  12   |    N    |  null   |
+
 [Back to Top](#8-week-sql-challenge)
 
 
@@ -265,7 +362,8 @@ Danny was scrolling through his Instagram feed when something really caught his 
 Danny was sold on the idea, but he knew that pizza alone was not going to help him get seed funding to expand his new Pizza Empire - so he had one more genius idea to combine with it - he was going to Uberize it - and so Pizza Runner was launched!
 
 Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers.
----
+
+
 ## Data
 ---
 ## Solution
@@ -279,7 +377,7 @@ Subscription based businesses are super popular and Danny realised that there wa
 Danny finds a few smart friends to launch his new startup Foodie-Fi in 2020 and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world!
 
 Danny created Foodie-Fi with a data driven mindset and wanted to ensure all future investment decisions and new features were decided using data. This case study focuses on using subscription style digital data to answer important business questions.
-## Introduction
+
 ---
 ## Data
 ---
@@ -300,7 +398,7 @@ Customers are allocated cloud data storage limits which are directly linked to h
 The management team at Data Bank want to increase their total customer base - but also need some help tracking just how much data storage their customers will need.
 
 This case study is all about calculating metrics, growth and helping the business analyse their data in a smart way to better forecast and plan for their future developments!
-## Introduction
+
 ---
 ## Data
 ---
@@ -321,7 +419,7 @@ The key business question he wants you to help him answer are the following:
 - What was the quantifiable impact of the changes introduced in June 2020?
 - Which platform, region, segment and customer types were the most impacted by this change?
 - What can we do about future introduction of similar sustainability updates to the business to minimise impact on sales?
-## Introduction
+
 ---
 ## Data
 ---
@@ -334,7 +432,7 @@ The key business question he wants you to help him answer are the following:
 Clique Bait is not like your regular online seafood store - the founder and CEO Danny, was also a part of a digital data analytics team and wanted to expand his knowledge into the seafood industry!
 
 In this case study - you are required to support Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
-## Introduction
+
 ---
 ## Data
 ---
@@ -347,7 +445,8 @@ In this case study - you are required to support Danny’s vision and analyse hi
 Balanced Tree Clothing Company prides themselves on providing an optimised range of clothing and lifestyle wear for the modern adventurer!
 
 Danny, the CEO of this trendy fashion company has asked you to assist the team’s merchandising teams analyse their sales performance and generate a basic financial report to share with the wider business.
-## Introduction
+
+
 ---
 ## Data
 ---
@@ -364,7 +463,8 @@ Clients share their customer lists with the Fresh Segments team who then aggrega
 In particular - the composition and rankings for different interests are provided for each client showing the proportion of their customer list who interacted with online assets related to each interest for each month.
 
 Danny has asked for your assistance to analyse aggregated metrics for an example client and provide some high level insights about the customer list and their interests.
-## Introduction
+
+
 ---
 ## Data
 ---
