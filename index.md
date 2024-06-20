@@ -1,7 +1,4 @@
 ## Portfolio
----
-## Current Project
-### [8 Weeks SQL Challenge](/sqlChallenge.md)
 
 
 ## Highlighted Projects
